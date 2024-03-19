@@ -1,7 +1,9 @@
-const myprojects = []
+const cors = require('cors');
 const express = require ('express')
+const myprojects = []
 const app = express()
 app.use(express.json())
+app.use(cors())
 const uuid = require('uuid')
 const port = 5000
 
@@ -21,8 +23,8 @@ app.get('/myprojects/', (request, response) => {
 
 
 app.post('/myprojects', (request, response) => {
-    const {order, clientNam, price, status} = request.body
-    const project = { id: uuid.v4(), order, clientNam, price, status}
+    const {name, age } = request.body
+    const project = { id: uuid.v4(), name, age }
     myprojects.push(project)
     return response.status(201).json(project)
     
